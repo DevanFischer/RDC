@@ -1,0 +1,47 @@
+{% extends "main/base.html" %}
+
+
+{% block title %}RDC - Ball Pythons{% endblock %}
+
+{% block content %}
+<section class="container">
+        <div class="row">
+
+                {% if all_balls_template %}
+                {% for ball in all_balls_template %}
+                <div class="col s4">
+                        <div class="card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                        <img class="activator ball-img" src="{{ ball.picture.url }}">
+                                </div>
+                                <div class="card-content">
+                                        <span class="card-title activator grey-text text-darken-4">{{ ball.name }}<i
+                                                        class="material-icons right">more_vert</i></span>
+                                        <p><a href="#">Inquire</a></p>
+                                </div>
+                                <div class="card-reveal">
+                                        <span class="card-title activator grey-text text-darken-4">Morph<i
+                                                        class="material-icons right">close</i></span>
+                                        <ul>
+                                                {% for gene in ball.morph.all %}
+                                                <li>{{ gene }}</li>
+                                                {% endfor %}
+                                        </ul>
+                                        <span class="gender">Gender: {{ ball.gender }}</span><br>
+                                        <span class="hatched-on">Hatched on: {{ ball.hatched_on }}</span><br>
+                                        <span class="weight">Weight: {{ ball.weight }}</span><br>
+                                        <span class="weighed-on">Weighed on: {{ ball.weighed_on }}</span><br>
+                                        <span class="feeding-on">Feeding on: {{ ball.feeding_on }}</span><br>
+                                        <span class="cost">Price: {{ ball.cost_in_dollars }}</span><br>
+                                        <span class="listed-on">Listed: {{ ball.listed_on }}</span><br>
+                                </div>
+                        </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>There are no snakes available.</p>
+                {% endif %}
+        </div>
+</section>
+
+{% endblock %}
